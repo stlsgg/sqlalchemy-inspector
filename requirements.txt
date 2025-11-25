@@ -1,0 +1,5 @@
+fastapi
+uvicorn
+SQLAlchemy
+mariadb
+python-dotenv
