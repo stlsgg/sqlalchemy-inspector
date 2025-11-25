@@ -1,3 +1,4 @@
 mariadb-data
 *.log
 *.md
+.env
