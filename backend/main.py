@@ -7,7 +7,7 @@ from pydantic import BaseModel
 app = FastAPI()
 
 @app.exception_handler(StarletteHTTPException)
-def custom_http_exception_handler(req: Request, exc: StarletteHTTPException):
+async def custom_http_exception_handler(req: Request, exc: StarletteHTTPException):
     return JSONResponse(
         status_code=exc.status_code,
         content={
@@ -20,34 +20,34 @@ def custom_http_exception_handler(req: Request, exc: StarletteHTTPException):
     )
 
 @app.get("/databases")
-def read_databases():
+async def read_databases():
     """Get information about existing and accessable databases."""
     # return show_dbs()
     return {"status": "ok"}
 
 @app.get("/databases/{database_name}")
-def read_database(database_name: str):
+async def read_database(database_name: str):
     """Get full information about database (metadata, tables)."""
     return {"status": "ok"}
 
 # TODO auth
 @app.post("/login")
-def login():
+async def login():
     """Authenticate a user with given login and password."""
     return {"status": "ok"}
 
 @app.get("/users")
-def print_users():
+async def print_users():
     """Print all logins in the system."""
     return {"status": "ok"}
 
 @app.get("/users/me")
-def print_my_user():
+async def print_my_user():
     """Print current user's login."""
     return {"status": "ok"}
 
 @app.get("/users/{user_id}")
-def print_user(user_id: int):
+async def print_user(user_id: int):
     """Print specific user's login."""
     return {"status": "ok"}
 
