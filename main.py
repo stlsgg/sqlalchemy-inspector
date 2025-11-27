@@ -26,6 +26,13 @@ def print_databases(engine: Engine) -> list:
         ))
         return res.all()
 
+def show_tables(engine: Engine, db_name: str) -> list:
+    with engine.connect() as conn:
+        conn.execute(text(f"USE {db_name}"))
+        res = conn.execute(text(
+            "SHOW TABLES"
+        ))
+        return res.all()
 
 def main():
     engine = init_engine("root")
