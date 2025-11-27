@@ -24,7 +24,7 @@ def print_databases(engine: Engine) -> list:
         res = conn.execute(text(
             "SHOW DATABASES"
         ))
-        print(res.all())
+        return res.all()
 
 
 def main():
