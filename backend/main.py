@@ -7,7 +7,18 @@ from db import MyDatabase
 from sqlalchemy import URL
 from sqlalchemy.exc import ProgrammingError
 
+# CORS
+from fastapi.middleware.cors import CORSMiddleware
+
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 url = URL.create(
     drivername="mariadb+mariadbconnector",
     username="root",
@@ -140,3 +151,6 @@ async def select_rows_in_table(
     if rows:
         return {"status": "ok", "data": rows}
 
+# basic auth
+# @app.post("/auth/login")
+# async def authenticate_user()
