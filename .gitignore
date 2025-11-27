@@ -1,4 +1,7 @@
-mariadb-data
+database
 *.log
 *.md
 .env
+
+# python specific
+__pycache__
