@@ -13,6 +13,7 @@ async def custom_http_exception_handler(req: Request, exc: StarletteHTTPExceptio
         content={
             "status": "error",
             "data": {
+                "error_code": exc.status_code,
                 "error_desc": exc.detail,
                 "path": req.url.path
             }
